@@ -11,6 +11,6 @@ const ventaSchema = new mongoose.Schema({
     capacidad: { type: String, required: true },
     graficos: { type: String, required: true },
     fecha: { type: Date, default: Date.now }
-});
+}, { collection: 'ventas' });
 
 module.exports = mongoose.model('Venta', ventaSchema);
