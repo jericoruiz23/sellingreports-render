@@ -3,6 +3,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const mongoose = require('mongoose');
 const ventasRoutes = require('./routes/ventas.routes');
+const Venta = require('./models/venta.model'); // <-- asegúrate de tener este modelo
 const cors = require('cors');
 
 const app = express();
@@ -32,6 +33,18 @@ app.get('/prueba-db', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+
+
+app.get('/prueba-docs', async (req, res) => {
+    try {
+        const ventas = await Venta.find({});
+        res.json(ventas);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 // Conectar a DB y levantar servidor
 connectDB().then(() => {
